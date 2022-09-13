@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Signup from './containers/Signup';
+import Signin from './containers/Signin';
+import Layout from './components/Layout';
+import Home from './containers/Home';
+import ContactUs from './containers/ContactUs';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/signin' element={<Signin />}></Route>
+          <Route path='/signup' element={<Signup />}></Route>
+          <Route path='/contactus' element={<ContactUs />}></Route>
+          {/* <Route path='/changepassword' element={<ChangePasswordForm />}></Route> */}
+          {/* <Route path='/home' element={<Home itemsList={itemsListState} updateItems={handleAdd} />}></Route>
+        <Route path='/cart' element={<Cart updatedList={updatedListState} remove={handleRemove} increment={incrementHandle} decrement={decrementHandle} totalPriceProp={totalPrice} />}></Route> */}
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

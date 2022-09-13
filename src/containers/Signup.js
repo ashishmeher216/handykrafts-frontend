@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify'
+import { signup } from '../redux/actions';
 
 const checkUppercase = (str) => {
   let flag = false;
@@ -19,13 +21,14 @@ const checkSpecialChar = (str) => {
   }
 }
 function Signup() {
+  const dispatch = useDispatch()
 
   const [fname, setFname] = useState("")
   const [lname, setLname] = useState("")
   const [mobile, setMobile] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const signup = (e) => {
+  const signupFun = (e) => {
     e.preventDefault();
     if (fname === "") {
       return toast.error("First name is required!", {
@@ -37,12 +40,17 @@ function Signup() {
         position: toast.POSITION.TOP_CENTER,
       });
     }
+    if (mobile === "") {
+      return toast.error("Mobile number is required!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
     if (!/^[0-9]+$/.test(mobile)) {
       return toast.error("Mobile number must contain digits only!", {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    if (mobile.length < 10) {
+    if (mobile.length !== 10) {
       return toast.error("Mobile number must be 10 digit long!", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -81,13 +89,21 @@ function Signup() {
     }
 
     //signup code
+    const payload = {
+      fname: fname,
+      lname: lname,
+      mobile: mobile,
+      email: email,
+      password: password
+    }
+    dispatch(signup(payload))
   }
   return (
     <div className="container-fluid">
       <div className="row d-flex justify-content-center align-items-center">
-        <div className="col-md-6">
+        <div className="col-md-6 d-none d-md-block">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            className="img-fluid" alt="Sample image" />
+            className="img-fluid" alt="Computer image" />
         </div>
         <div className="col-md-6">
           <form name="SignupForm" action="">
@@ -116,7 +132,7 @@ function Signup() {
             <label htmlFor="password">Password </label>
             <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-            <input type="submit" defaultValue="Submit" onClick={signup} />
+            <input type="submit" defaultValue="Submit" onClick={signupFun} />
           </form>
         </div>
       </div>

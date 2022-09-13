@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import image from '../images/logo.png'
 import { FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 function Header() {
+  const auth = useSelector(state => state.auth)
   return (
     <>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark">
@@ -46,25 +48,25 @@ function Header() {
                 </a>
               </li>
             </Link>
-            <Link to='/signin'>
-              <li className="nav-item">
-                <a className="nav-link" href="">
-                  Sign In
-                </a>
-              </li>
-            </Link>
-            <Link to='/signup'>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Sign Up
-                </a>
-              </li>
-            </Link>
           </ul>
         </div>
+        {
+          auth.authenticate ?
+            <button className="btn btn-info btn-sm m-1">Logout</button>
+            :
+            <>
+              <Link to='/signin'>
+                <button className="btn btn-warning btn-sm">Sign In</button>
+              </Link>
+              <Link to='/signup'>
+                <button className="btn btn-info btn-sm m-1">Sign Up</button>
+              </Link>
+            </>
+        }
         <Link to='/cart'>
           <h4 style={{ color: 'white' }}> <FaShoppingCart /> </h4>
         </Link>
+
       </nav>
 
     </>

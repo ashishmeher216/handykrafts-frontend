@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from '../helpers/axios';
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";

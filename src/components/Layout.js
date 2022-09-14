@@ -10,7 +10,7 @@ const Layout = (props) => {
             <Header />
             {props.children}
             <Footer />
-            
+
             <ToastContainer autoClose={2000} />
         </>
     )

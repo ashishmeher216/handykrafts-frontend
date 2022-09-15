@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import { signup } from '../redux/actions';
 
@@ -22,6 +23,7 @@ const checkSpecialChar = (str) => {
 }
 function Signup() {
   const dispatch = useDispatch()
+  const auth = useSelector(state=>state.auth)
 
   const [fname, setFname] = useState("")
   const [lname, setLname] = useState("")
@@ -98,6 +100,11 @@ function Signup() {
     }
     dispatch(signup(payload))
   }
+
+  //if user is already logged in then redirect the user to home page
+  if (auth.authenticate) {
+    return <Navigate to={`/`} />;
+}
   return (
     <div className="container-fluid">
       <div className="row d-flex justify-content-center align-items-center">

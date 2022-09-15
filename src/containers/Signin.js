@@ -2,11 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../redux/actions';
+import { Navigate } from 'react-router-dom';
 
 function Signin() {
     const dispatch = useDispatch();
+    const auth = useSelector(state=>state.auth)
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -34,6 +37,11 @@ function Signin() {
         }
 
         dispatch(signin(payload));
+    }
+
+    //if user is already logged in then redirect the user to home page
+    if (auth.authenticate) {
+        return <Navigate to={`/`} />;
     }
 
     return (

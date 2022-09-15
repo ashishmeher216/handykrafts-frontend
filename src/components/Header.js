@@ -2,13 +2,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import image from '../images/logo.png'
 import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { signout } from '../redux/actions';
 function Header() {
   const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+
+  const signoutFun=()=>{
+    const payload = {
+      email:auth.email
+    }
+    dispatch(signout(payload))
+    
+  }
   return (
     <>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-        <img className='logo-img' src={image} />
+        <img className='logo-img' src={image} alt="Brand Logo"/>
         {/* Brand */}
         <Link to='/'>
           <a className="navbar-brand" href="">
@@ -52,7 +62,7 @@ function Header() {
         </div>
         {
           auth.authenticate ?
-            <button className="btn btn-info btn-sm m-1">Logout</button>
+            <button className="btn btn-info btn-sm m-1" onClick={signoutFun}>Logout</button>
             :
             <>
               <Link to='/signin'>

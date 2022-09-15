@@ -45,12 +45,10 @@ export const signin = (user) => {
             })
             .then((response) => {
                 // console.log(response.data);
-                const { token, payload, message } = response.data;
-                localStorage.setItem("token", token);
-                localStorage.setItem("user", JSON.stringify(user));
+                const { payload, message } = response.data;
                 dispatch({
                     type: authConstants.LOGIN_SUCCESS,
-                    payload: { token, payload },
+                    payload: { payload },
                 });
 
                 toast.success(`${message}`, {
@@ -71,39 +69,16 @@ export const signin = (user) => {
     };
 };
 
-export const isUserLoggedIn = () => {
-    return async (dispatch) => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            const user = JSON.parse(localStorage.getItem("user"));
-            dispatch({
-                type: authConstants.LOGIN_SUCCESS,
-                payload: { token, user },
-            });
-        } 
-        else {
-            toast.error("You need to login again!",{
-                position: toast.POSITION.TOP_CENTER
-              });
-            dispatch({
-                type: authConstants.LOGIN_FAILURE,
-                payload: { error: "You need to login again!" },
-            });
-            
-        }
-    };
-};
-
-export const signout = () => {
+export const signout = (user) => {
     return async (dispatch) => {
         dispatch({ type: authConstants.LOGOUT_REQUEST });
 
         axios
-            .post("/user/signout")
+            .post("/user/signout",user)
             .then((response) => {
-                localStorage.clear();
+                const { message } = response.data;
                 dispatch({ type: authConstants.LOGOUT_SUCCESS });
-                toast.success("Log out successful",{
+                toast.success(`${message}`,{
                     position: toast.POSITION.TOP_CENTER
                   });
             })
@@ -112,7 +87,7 @@ export const signout = () => {
                     type: authConstants.LOGOUT_FAILURE,
                     payload: { error: error },
                 });
-                toast.error("You must be logged in to logout!",{
+                toast.error(`${error.response.data.message}`,{
                     position: toast.POSITION.TOP_CENTER
                   });
             });

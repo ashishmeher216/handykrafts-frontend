@@ -1,7 +1,6 @@
 import { authConstants } from "../actions/constants";
 
 const initState = {
-    token:'null',
     fname:'',
     lname:'',
     email:'',
@@ -26,8 +25,7 @@ const authReducers = (state = initState, action) => {
                 fname:action.payload.payload.fname,
                 lname:action.payload.payload.lname,
                 email:action.payload.payload.email,
-                token:action.payload.token,
-                authenticate:true,
+                authenticate:action.payload.payload.loggedIn,
                 authenticating:false
             }
             // console.log(state);

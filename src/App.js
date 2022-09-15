@@ -20,7 +20,7 @@ function App() {
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/contactus' element={<ContactUs />}></Route>
           <Route path='/aboutus' element={<AboutUs/>}></Route>
-          <Route path = '/products/create' element={<ProductForm />}></Route>
+          <Route path = '/products/create' element={<ProductForm/>}></Route>
           <Route path ='/allproducts' element={<ProductAll/>}></Route>
           {/* <Route path='/changepassword' element={<ChangePasswordForm />}></Route> */}
           {/* <Route path='/home' element={<Home itemsList={itemsListState} updateItems={handleAdd} />}></Route>

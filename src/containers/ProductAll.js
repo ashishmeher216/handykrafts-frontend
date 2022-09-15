@@ -2,6 +2,7 @@ import axios from "../helpers/axios";
 import React,{useEffect, useState} from 'react'
 import { toast } from 'react-toastify'
 import Card from "../components/Card";
+import ProductCard from "./ProductCard";
 
 const ProductAll = () => {
      const [products,setProducts] = useState([])
@@ -21,11 +22,16 @@ const ProductAll = () => {
     },[])
 
     return(
-        <div style={{display:'flex'}}>
-        {
-          //Fetch Cards
-        }
-        </div>
+       <div className="flexColRow">
+       {
+            products.map(
+               product =>
+                    <ProductCard key={product.productId} productName={product.productName} 
+                    productDescription={product.productDescription} productPrice={product.productPrice}
+                    productImage = {product.productImage}/> 
+            )
+       }
+       </div>
     )
 }
 

@@ -1,7 +1,9 @@
 import React from 'react'
 import Card from '../components/Card'
-import carousel from '../images/home-carousel.jpg'
-import { Link } from 'react-router-dom'
+import Carousel from '../components/Carousel'
+import {Link} from 'react-router-dom'
+
+
 function Home() {
 
     const categories = [
@@ -27,20 +29,24 @@ function Home() {
         },
     ]
     return (
-        <div>
-            <img src={carousel} alt="Home Carousel" id="carousel"/>
-            <h3 id="heading">Our Collections</h3>
+        <>
+        <Carousel/>
+        
+            <div>
+            <h3 className="text-center">Our Collections</h3>
             <div className="flexColRow">
                 {
                     categories.map(item => <Card key={item.id} name={item.name} description={item.description}/>)
                 }
             </div>
-            {/* <div>
-                <Link to='/allproducts'>
-                <button style={{}}>Our Products</button>
+            </div>
+
+            <div className='button-ourProducts'>
+                <Link to="/allproducts">
+                <button type="button" className="btn btn-outline-dark" >Our Products</button>
                 </Link>
-            </div> */}
-        </div>
+            </div>
+        </>
     )
 }
 

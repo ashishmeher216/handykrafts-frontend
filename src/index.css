@@ -147,8 +147,15 @@ hr {
 } 
 
 #carousel {
-  height:125vh;
-  width:100vw;
+  padding:100px;
+  height:400px;
+  width:100%;
+}
+.welcome {
+  position: relative;
+  top:-500px;
+  text-align: center;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -156,6 +163,7 @@ hr {
     flex-direction: column;
   }
   #carousel {
+    padding:30px;
     height:50vh;
     width:100vw;
   }

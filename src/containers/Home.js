@@ -35,11 +35,11 @@ function Home() {
                     categories.map(item => <Card key={item.id} name={item.name} description={item.description}/>)
                 }
             </div>
-            <div>
+            {/* <div>
                 <Link to='/allproducts'>
                 <button style={{}}>Our Products</button>
                 </Link>
-            </div>
+            </div> */}
         </div>
     )
 }

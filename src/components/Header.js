@@ -18,7 +18,7 @@ function Header() {
   return (
     <>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-        <img className='logo-img' src={image} alt="Brand Logo"/>
+        <img className='logo-img' src={image} alt="Brand Logo" style={{backgroundColor:'white',marginRight:"20px"}}/>
         {/* Brand */}
         <Link to='/'>
           <a className="navbar-brand" href="">

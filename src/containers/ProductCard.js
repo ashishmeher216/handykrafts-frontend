@@ -6,7 +6,7 @@ const ProductCard = (props) =>{
     console.log(productName, productDescription)
     return (
         <>
-            <div className="card text-center" style={{width: "20%", margin: "2%"}}>
+            <div className="card text-center">
             <img className="card-img-top" src={productImage} alt={productName} />
             <div className="card-body">
             <h5 className="card-title">{productName}</h5>

@@ -130,12 +130,12 @@ label {
   color: red;
 }
 
-.flexColRow{
+/* .flexColRow{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
+} */
 hr { 
   display: block;
   margin-top: 0.5em;
@@ -159,9 +159,7 @@ hr {
 }
 
 @media only screen and (max-width: 600px) {
-  .flexColRow {
-    flex-direction: column;
-  }
+  
   #carousel {
     padding:30px;
     height:50vh;

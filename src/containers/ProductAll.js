@@ -22,16 +22,21 @@ const ProductAll = () => {
     },[])
 
     return(
-       <div className="flexColRow">
+        <>
+       <h1 className="text-center" style={{margin: "2%"}}>Our Products</h1>
+       <div className="row">
        {
             products.map(
                product =>
+                    <div className="col-sm-3">
                     <ProductCard key={product.productId} productName={product.productName} 
                     productDescription={product.productDescription} productPrice={product.productPrice}
                     productImage = {product.productImage}/> 
+                    </div>
             )
        }
        </div>
+       </>
     )
 }
 

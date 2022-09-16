@@ -1,6 +1,8 @@
 import React from 'react'
 import Card from '../components/Card'
 import Carousel from '../components/Carousel'
+import {Link} from 'react-router-dom'
+
 
 function Home() {
 
@@ -27,7 +29,7 @@ function Home() {
         },
     ]
     return (
-<>
+        <>
         <Carousel/>
         
             <div>
@@ -37,8 +39,14 @@ function Home() {
                     categories.map(item => <Card key={item.id} name={item.name} description={item.description}/>)
                 }
             </div>
-        </div>
-</>
+            </div>
+
+            <div className='button-ourProducts'>
+                <Link to="/allproducts">
+                <button type="button" className="btn btn-outline-dark" >Our Products</button>
+                </Link>
+            </div>
+        </>
     )
 }
 

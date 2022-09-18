@@ -10,6 +10,14 @@ const ProductForm = () => {
     const [productImage, setproductImage] = useState("")
     const [categoryId, setCategoryId] = useState("")
 
+    const resetForm = () => {
+        setCategoryId("");
+        setProductDescription("");
+        setProductName("");
+        setProductPrice("");
+        setproductImage("");
+    }
+
     const formSubmit = (e) =>{
         e.preventDefault();
 
@@ -38,6 +46,8 @@ const ProductForm = () => {
                 position: toast.POSITION.TOP_CENTER
             })
         })
+
+        resetForm();
     }
 
     return (

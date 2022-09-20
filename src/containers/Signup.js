@@ -30,6 +30,15 @@ function Signup() {
   const [mobile, setMobile] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const resetForm = () => {
+    setFname("")
+    setLname("")
+    setMobile("")
+    setEmail("")
+    setPassword("")
+  }
+
   const signupFun = (e) => {
     e.preventDefault();
     if (fname === "") {
@@ -98,6 +107,9 @@ function Signup() {
       email: email,
       password: password
     }
+
+    resetForm();
+
     dispatch(signup(payload))
   }
 

@@ -8,7 +8,7 @@ import ContactUs from './containers/ContactUs';
 import ProductForm from './containers/Admin/ProductForm';
 import AboutUs from './containers/AboutUs'
 import ProductAll from './containers/ProductAll';
-
+import ProductsForEachCategories from './containers/ProductsForEachCategories';
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path='/aboutus' element={<AboutUs/>}></Route>
           <Route path = '/products/create' element={<ProductForm/>}></Route>
           <Route path ='/allproducts' element={<ProductAll/>}></Route>
+          <Route path= '/categories/:id' element={<ProductsForEachCategories/>}></Route>
           {/* <Route path='/changepassword' element={<ChangePasswordForm />}></Route> */}
           {/* <Route path='/home' element={<Home itemsList={itemsListState} updateItems={handleAdd} />}></Route>
         <Route path='/cart' element={<Cart updatedList={updatedListState} remove={handleRemove} increment={incrementHandle} decrement={decrementHandle} totalPriceProp={totalPrice} />}></Route> */}

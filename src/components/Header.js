@@ -2,23 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import image from '../images/logo.png'
 import { FaShoppingCart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { signout } from '../redux/actions';
-function Header() {
-  const auth = useSelector(state => state.auth)
-  const dispatch = useDispatch()
+import { toast } from "react-toastify";
+import axios from '../helpers/axios';
+function Header(props) {
+  const {loggedIn,email,signoutRequest}=props;
+  console.log("Header...");
+  console.log(props)
 
-  const signoutFun=()=>{
+  const signoutFun = () => {
     const payload = {
-      email:auth.email
+      email: email
     }
-    dispatch(signout(payload))
-    
+
+    signoutRequest(payload);
   }
   return (
     <>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-        <img className='logo-img' src={image} alt="Brand Logo" style={{backgroundColor:'white',marginRight:"20px"}}/>
+        <img className='logo-img' src={image} alt="Brand Logo" style={{ backgroundColor: 'white', marginRight: "20px" }} />
         {/* Brand */}
         <Link to='/'>
           <a className="navbar-brand" href="">
@@ -44,14 +45,14 @@ function Header() {
                 </a>
               </li>
             </Link> */}
-            <Link to='aboutus'>
+            <Link to='/aboutus'>
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   About Us
                 </a>
               </li>
             </Link>
-            <Link to='contactus'>
+            <Link to='/contactus'>
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Contact Us
@@ -61,7 +62,7 @@ function Header() {
           </ul>
         </div>
         {
-          auth.authenticate ?
+          loggedIn ?
             <button className="btn btn-info btn-sm m-1" onClick={signoutFun}>Logout</button>
             :
             <>

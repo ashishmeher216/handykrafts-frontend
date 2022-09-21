@@ -1,19 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { useDispatch, useSelector } from 'react-redux';
-import { signin } from '../redux/actions';
-import { Navigate } from 'react-router-dom';
+import Layout from '../components/Layout';
 
-function Signin() {
-    const dispatch = useDispatch();
-    const auth = useSelector(state=>state.auth)
-
+function Signin(props) {
+    const { signinRequest } = props;
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const signinFun = (e) =>{
+    const signinFun = (e) => {
         e.preventDefault();
         if (email === "") {
             return toast.error("Email is required", {
@@ -25,23 +20,22 @@ function Signin() {
                 position: toast.POSITION.TOP_CENTER,
             });
         }
-        if(password === "") {
+        if (password === "") {
             return toast.error("Password is required", {
                 position: toast.POSITION.TOP_CENTER,
             });
         }
         ///login here
-        const payload = {
-            email:email,
-            password:password
+        const user = {
+            email: email,
+            password: password
         }
 
-        dispatch(signin(payload));
-    }
+        signinRequest(user);
+        
+        setEmail("");
+        setPassword("");
 
-    //if user is already logged in then redirect the user to home page
-    if (auth.authenticate) {
-        return <Navigate to={`/`} />;
     }
 
     return (
@@ -57,15 +51,12 @@ function Signin() {
                         <p className="text-center">Take your art to the next level.</p>
 
                         <label htmlFor="email"> Email </label>
-                        <input className='inputField' type="text" id="email" name="email" autoComplete="off" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                        <input className='inputField' type="text" id="email" name="email" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                         <label htmlFor="password">Password </label>
-                        <input className='inputField' type="text" id="password" name="password" autoComplete="off" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <input className='inputField' type="text" id="password" name="password" autoComplete="off" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                        <Link to='/changepassword'>
-                            <p style={{ color: 'green' }}>Change Password</p>
-                        </Link>
-                        <input type="submit" defaultValue="Submit" onClick={signinFun}/>
+                        <input type="submit" defaultValue="Submit" onClick={signinFun} />
                     </form>
                 </div>
             </div>

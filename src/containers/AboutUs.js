@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-function AboutUs() {
+const AboutUs = () => {
     return (
         <>
-            <div>This is About Us Page</div><br></br>
+            <h3>This is About Us Page</h3><br></br>
             <Link to='/'>BackToHome</Link>
         </>
     )

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
-import { signup } from '../redux/actions';
+import axios from '../helpers/axios';
 
 const checkUppercase = (str) => {
   let flag = false;
@@ -22,9 +20,6 @@ const checkSpecialChar = (str) => {
   }
 }
 function Signup() {
-  const dispatch = useDispatch()
-  const auth = useSelector(state=>state.auth)
-
   const [fname, setFname] = useState("")
   const [lname, setLname] = useState("")
   const [mobile, setMobile] = useState("")
@@ -100,7 +95,7 @@ function Signup() {
     }
 
     //signup code
-    const payload = {
+    const user = {
       fname: fname,
       lname: lname,
       mobile: mobile,
@@ -108,15 +103,29 @@ function Signup() {
       password: password
     }
 
-    resetForm();
+    
+    axios
+      .post("/user/signup", user)
+      .then((response) => {
+        // console.log(response);
+        const { message } = response.data;
 
-    dispatch(signup(payload))
+        toast.success(`${message}`, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        toast.success("Please signin to continue.", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        
+        resetForm();
+      })
+      .catch((error) => {
+        toast.error(`${error.response.data.message}`, {
+          position: toast.POSITION.TOP_CENTER
+        });
+      });
   }
 
-  //if user is already logged in then redirect the user to home page
-  if (auth.authenticate) {
-    return <Navigate to={`/`} />;
-}
   return (
     <div className="container-fluid">
       <div className="row d-flex justify-content-center align-items-center">

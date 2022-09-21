@@ -7,7 +7,7 @@ import Footer from './Footer'
 const Layout = (props) => {
     return (
         <>
-            <Header />
+            <Header loggedIn={props.loggedIn} email={props.email} signoutRequest={props.signoutRequest} />
             {props.children}
             <Footer />
 

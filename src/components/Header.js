@@ -38,13 +38,6 @@ function Header(props) {
         {/* Navbar links */}
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
-            {/* <Link to='/categories'>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Categories
-                </a>
-              </li>
-            </Link> */}
             <Link to='/aboutus'>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -56,6 +49,13 @@ function Header(props) {
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Contact Us
+                </a>
+              </li>
+            </Link>
+            <Link to='/products/create'>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Add Product
                 </a>
               </li>
             </Link>

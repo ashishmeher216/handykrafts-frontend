@@ -2,12 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import image from '../images/logo.png'
 import { FaShoppingCart } from 'react-icons/fa';
-import { toast } from "react-toastify";
-import axios from '../helpers/axios';
+
 function Header(props) {
   const {loggedIn,email,signoutRequest}=props;
-  console.log("Header...");
-  console.log(props)
 
   const signoutFun = () => {
     const payload = {

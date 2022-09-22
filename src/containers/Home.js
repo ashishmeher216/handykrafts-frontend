@@ -34,7 +34,7 @@ const Home = () => {
                 <div className="row">
                     {
                         categories.length > 0 && categories.map(item =>
-                            <div className='col-sm-3'>
+                            <div className='col-sm-3' key={item.catid}>
                                 <Card key={item.catid} id={item.catid} name={item.catname} description={item.catdesc}
                                     image={item.catlink} />
                             </div>

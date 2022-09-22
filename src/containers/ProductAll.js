@@ -26,7 +26,7 @@ const ProductAll = () => {
                 {
                     products.length > 0 && products.map(
                         product =>
-                            <div className="col-sm-3">
+                            <div className="col-sm-3" key={product.productId}>
                                 <ProductCard key={product.productId} productName={product.productName}
                                     productDescription={product.productDescription} productPrice={product.productPrice}
                                     productImage={product.productImage} />
